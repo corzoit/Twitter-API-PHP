@@ -86,7 +86,7 @@ class UserConnection extends Connection {
      *
      * @return string authentication URL
      */
-    public function getRedirectUrlForAuth()
+    public function getRedirectUrlForAuth($authUrl)
     {
         //Oauth1 plugin to get access tokens!
         $oauth = new Oauth1(array(
@@ -115,7 +115,7 @@ class UserConnection extends Connection {
         ));
 
         //return the redirect URL the user should be redirected to.
-        return (Config::get('base_url') . Config::get('oauth_authenticate') . '?' . $params);
+        return (Config::get('base_url') . Config::get($authUrl) . '?' . $params);
     }
 
     /**
